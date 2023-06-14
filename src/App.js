@@ -14,7 +14,7 @@ function App() {
   ]);
   const handleRemoveClick = () => {
     setTodoData([]);
-  }
+  };
   return (
     <div className="flex items-center justify-center w-screen h-screen bg-blue-300">
       <div className="w-4/5 p-6 bg-white rounded-[6px] shadow">
@@ -22,7 +22,12 @@ function App() {
           <h1 className="text-center w-3/4 text-2xl text-red-600 font-semibold">
             Firebase Todo List
           </h1>
-          <button className="p-2 text-blue-400 border-2 border-blue-400 rounded hover:text-white hover:bg-blue-400 text-[12px]" onClick={handleRemoveClick}>Delete All</button>
+          <button
+            className="p-2 text-blue-400 border-2 border-blue-400 rounded hover:text-white hover:bg-blue-400 text-[12px]"
+            onClick={handleRemoveClick}
+          >
+            Delete All
+          </button>
         </div>
         {/* 할일 목록 */}
         <List todoData={todoData} setTodoData={setTodoData} />
