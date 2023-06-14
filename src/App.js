@@ -4,16 +4,16 @@ import List from "./components/List";
 import Form from "./components/Form";
 
 function App() {
-  console.log("App 랜더링");
-  // 더미 데이터 일반변수
-  const [todoData, setTodoData] = useState([
-    { id: 1, title: "Blue Achive", completed: false },
-    { id: 2, title: "Maple Story", completed: false },
-    { id: 3, title: "Sudden Attack", completed: false },
-    { id: 4, title: "Metal Rage", completed: false },
-  ]);
+  // console.log("App 랜더링");
+  // 로컬 데이터 일반변수
+  const initTodoData = localStorage.getItem("fbTodoData")
+    ? JSON.parse(localStorage.getItem("fbTodoData"))
+    : [];
+  const [todoData, setTodoData] = useState(initTodoData);
   const handleRemoveClick = () => {
     setTodoData([]);
+    // 로컬 스토리지 초기화
+    localStorage.setItem("fbTodoData", JSON.stringify([]));
   };
   return (
     <div className="flex items-center justify-center w-screen h-screen bg-blue-300">
