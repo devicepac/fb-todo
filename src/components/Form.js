@@ -15,12 +15,26 @@ const Form = ({ todoData, setTodoData }) => {
     evant.preventDefault();
     // 새로운 todo 객체를 만들어준다.
     // 형식 즉, 키명을 구조를 지켜줌
+    // 정규 표현식 처리 예정
+    if (value === "") {
+      alert("내용을 입력하세요.")
+    }
+
     const newTodo = { id: Date.now(), title: value, completed: false };
     // state 저장한다. 화면 리랜더링 된다.
     // todoData 에 추가.
+    // set함수 즉 setTodoData에서
+    // 갱신된 state 를 즉시 가지고 오기 위해서는
+    // set함수에 인자로
+    // 콜백 함수를 전달한다.
+    // setTodoData([...todoData, newTodo]);
+    setTodoData(prev => {
+      return [...prev, newTodo];
+    });
     setTodoData([...todoData, newTodo]);
     // 로컬 스토리지 초기화
-    localStorage.setItem("fbTodoData", JSON.stringify(todoData));
+    localStorage.setItem("fbTodoData", JSON.stringify([...todoData, newTodo]));
+    // axios ppost 호출 fbtodolist 추가하기
     // 입력창 초기화
     setValue("");
   };

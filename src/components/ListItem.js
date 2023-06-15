@@ -24,6 +24,7 @@ const ListItem = ({ item, todoData, setTodoData }) => {
     setTodoData(newTodoData);
     // 로컬스토리지 저장
     localStorage.setItem("fbTodoData", JSON.stringify(newTodoData));
+    // axios ppost 호출 fbtodolist 추가하기
   };
   const handleEditClick = () => {
     setIsEdit(true);
@@ -44,6 +45,7 @@ const ListItem = ({ item, todoData, setTodoData }) => {
     setTodoData(newTodoData);
     // 로컬스토리지 저장
     localStorage.setItem("fbTodoData", JSON.stringify(newTodoData));
+    // axios patcnh/put 호출 fbtodolist 수정하기
     setIsEdit(false);
   };
 
@@ -61,6 +63,7 @@ const ListItem = ({ item, todoData, setTodoData }) => {
     setTodoData(newTodoData);
     // 로컬스토리지 저장
     localStorage.setItem("fbTodoData", JSON.stringify(newTodoData));
+    // axios patch/put 호출 fbtodolist 수정하기
   };
 
   if (isEdit) {
@@ -72,8 +75,8 @@ const ListItem = ({ item, todoData, setTodoData }) => {
           <input
             className="w-full px-3 py-2 mr-3 text-gray-500 rounded"
             type="text"
-            value={editTitle}
-            onChange={handleEditChange}
+            defaultChecked={item.completed}
+            onChange={evant => handleEditChange(evant)}
           />
         </div>
         <div className="items-center">
