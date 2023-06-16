@@ -18,11 +18,24 @@ const SignUp = () => {
         .auth()
         .createUserWithEmailAndPassword(email, pw);
       await createUser.user.updateProfile({
-        name: nickName,
+        displayName: nickName,
       });
+      // 로그인 창으로 이동
+      navigate("/login")
       console.log("등록된 정보 : ", createUser.user);
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      console.log(error);
+      // 회원가입 실패
+      if (error.code == "auth/email-already-in-use") {
+        alert("The email address is already in use");
+      } else if (error.code == "auth/invalid-email") {
+        alert("The email address is not valid.");
+      } else if (error.code == "auth/operation-not-allowed") {
+        alert("Operation not allowed.");
+      } else if (error.code == "auth/weak-password") {
+        alert("The password is too weak.");
+      }
+      
     }
   };
 
@@ -41,7 +54,7 @@ const SignUp = () => {
             required
             value={nickName}
             onChange={e => setNickName(e.target.value)}
-            maxLength={10}
+            maxLength={15}
             minLength={2}
           />
           <label htmlFor="">이메일</label>
