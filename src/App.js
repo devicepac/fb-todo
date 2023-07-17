@@ -7,10 +7,11 @@ import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Todo from "./pages/Todo";
 import NotFound from "./pages/NotFound";
-import Mypage from "./pages/Mypage";
+import MyPage from "./pages/Mypage";
 import { useState } from "react";
-import Schedule from "./components/Schedule";
+import Schedule from "./pages/Schedule";
 import Upload from "./pages/Upload";
+import TodoChart from "./pages/TodoChart";
 
 function App() {
   // console.log("App 랜더링");
@@ -25,13 +26,13 @@ function App() {
         fbName={fbName}
         fbEmail={fbEmail}
         fbUid={fbUid}
-        setFBUid={setFBUid}
-        setFBEmail={setFBEmail}
         setFBName={setFBName}
+        setFBEmail={setFBEmail}
+        setFBUid={setFBUid}
       />
       <div className="container mx-auto h-full">
         <Routes>
-          {/* NaviGate 를 이용한 강제 이동 */}
+          {/* Navigate 를 이용한 강제 이동 */}
           <Route path="/" element={<Navigate to="/home" />} />
           <Route path="/home" element={<Home />} />
           <Route path="/about" element={<About />} />
@@ -39,9 +40,9 @@ function App() {
             path="/login"
             element={
               <Login
-                setFBUid={setFBUid}
-                setFBEmail={setFBEmail}
                 setFBName={setFBName}
+                setFBEmail={setFBEmail}
+                setFBUid={setFBUid}
               />
             }
           />
@@ -53,18 +54,19 @@ function App() {
           <Route
             path="/mypage"
             element={
-              <Mypage
+              <MyPage
                 fbName={fbName}
                 fbEmail={fbEmail}
                 fbUid={fbUid}
-                setFBUid={setFBUid}
-                setFBEmail={setFBEmail}
                 setFBName={setFBName}
+                setFBEmail={setFBEmail}
+                setFBUid={setFBUid}
               />
             }
           />
           <Route path="/schedule" element={<Schedule />} />
           <Route path="/upload" element={<Upload />} />
+          <Route path="/chart" element={<TodoChart />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>

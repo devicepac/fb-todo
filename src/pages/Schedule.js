@@ -9,13 +9,11 @@ const Schedule = () => {
   const showModal = () => {
     setIsModalOpen(true);
   };
-
   const handleOk = () => {
     setIsModalOpen(false);
   };
-
   const handleCancel = () => {
-    setOpen(false);
+    setIsModalOpen(false);
   };
 
   const [day, setDay] = useState(new Date());
