@@ -1,31 +1,22 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import firebase from "../firebase";
-import { useAuthContext } from "../hooks/useAuthContext";
+import { useLogout } from "../hooks/useLogout";
 
-const Header = ({
-  fbName,
-  fbEmail,
-  fbUid,
-  setFBName,
-  setFBEmail,
-  setFBUid,
-}) => {
-  // AuthContex로그아웃 실행으로 변경
-
-  const { dispatch } = useAuthContext();
+const Header = ({ fbName, fbEmail, fbUid }) => {
+  // AuthContex 로그아웃 실행으로 상태 변경
+  const { logout } = useLogout();
 
   const navigator = useNavigate();
   // fb 로그아웃
   const handleLogout = () => {
-    dispatch({type: "logout", payload: ""})
+    logout();
 
-    firebase.auth().signOut();
-    console.log("로그아웃");
-    setFBName("");
-    setFBEmail("");
-    setFBUid("");
-    navigator("/");
+    // firebase.auth().signOut();
+    // console.log("로그아웃");
+    // setFBName("");
+    // setFBEmail("");
+    // setFBUid("");
+    // navigator("/");
   };
   return (
     <header className="p-7 bg-black">
