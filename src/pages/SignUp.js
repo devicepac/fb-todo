@@ -3,7 +3,7 @@ import SingUpDiv from "../style/UserCss";
 import { useNavigate } from "react-router-dom";
 // firebase 연동
 // import firebase from "../firebase";
-import { useSignup } from "../hooks/useSignup";
+import { useSignup } from "../hooks/useFireBase";
 
 const SignUp = () => {
   const navigate = useNavigate();

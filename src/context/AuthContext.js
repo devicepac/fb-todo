@@ -12,7 +12,7 @@ const AuthContext = createContext();
 // 원본(state)을 훼손하지 않고 원하는 데이터 처리 후
 // 원본(state)을 변경한다. (불변성 유지)
 const authReducer = (state, action) => {
-  console.log("리듀서함수 : ", action); // { type: "login", payload: user }
+  // console.log("리듀서함수 : ", action); // { type: "login", payload: user }
 
   // action 은 반드시 형태가 {type:"구분자"}
   // {type: "입금", payload:1000}
@@ -29,6 +29,17 @@ const authReducer = (state, action) => {
     case "isAuthReady":
       return { ...state, user: action.payload, isAuthReady: true };
 
+    case "updateName":
+      return { ...state, user: action.payload };
+
+    case "updateEmail":
+      return { ...state, user: action.payload };
+
+    case "updatePass":
+      return { ...state, user: action.payload };
+
+    case "userDelete":
+      return { ...state, user: null };
     default:
       return state; // 그대로 돌려준다.
   }

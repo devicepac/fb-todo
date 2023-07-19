@@ -1,14 +1,11 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useLogout } from "../hooks/useLogout";
-import { useAuthContext } from "../hooks/useAuthContext";
+import { useLogout, useAuthContext } from "../hooks/useFireBase";
 
 const Header = () => {
   // AuthContex 로그아웃 실행으로 상태 변경
   const { logout } = useLogout();
   const { user } = useAuthContext();
-  console.log("================");
-  console.log(user);
 
   const navigator = useNavigate();
   // fb 로그아웃

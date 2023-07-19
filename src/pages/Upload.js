@@ -26,7 +26,7 @@ const UploadFetch = () => {
     // FormData 객체에 속성명:값을 추가한다.
     // 이경우 append() 메서드를 활용한다.
     formData.append(sendKye, file);
-    console.log(formData);
+    // console.log(formData);
     try {
       const res = await fetch(sendUrl, {
         method: "POST",

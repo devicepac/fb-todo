@@ -4,7 +4,7 @@ import List from "../components/List";
 import Form from "../components/Form";
 import { useNavigate } from "react-router-dom";
 import { deleteAllTodo, getTodo } from "../axios/axios";
-import Loading from "../components/Loading";
+// import Loading from "../components/Loading";
 
 const Todo = ({ fbName, fbEmail, fbUid }) => {
   const navigator = useNavigate();
