@@ -1,37 +1,46 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import firebase from "../firebase";
+// import firebase from "../firebase";
 import { Button, Checkbox, Form, Input, Modal } from "antd";
+import { useLogin } from "../hooks/useLogin";
 
-const Login = ({ setFBEmail, setFBName, setFBUid }) => {
+const Login = () => {
+  const { login } = useLogin();
   // Link, NavLink, useNaviage
   const navigate = useNavigate();
   // 로그인
   const onFinish = async values => {
-    // console.log("Success:", values);
+    console.log("Success:", values);
     try {
-      await firebase
-        .auth()
-        .signInWithEmailAndPassword(values.email, values.password);
-      // 로그인 된 사용자의 정보를 가지고 옴
-      const user = firebase.auth().currentUser;
-      setFBName(user.displayName);
-      setFBEmail(user.email);
-      setFBUid(user.uid);
-      navigate("/");
+      login(values.email, values.password);
     } catch (error) {
-      console.log(error.code);
-      if (error.code === "auth/invalid-email") {
-        setModalMassage("올바른 이메일 형식이 아닙니다.");
-      } else if (error.code === "auth/wrong-password") {
-        setModalMassage("올바르지 않은 비밀번호입니다.");
-      } else if (error.code === "auth/user-not-found") {
-        setModalMassage("가입되지 않은 사용자 입니다.");
-      } else {
-        setModalMassage("로그인이 실패하였습니다.");
-      }
-      showModal();
+      console.log(error);
     }
+    
+    // Firbase 로그인
+    // try {
+    //   await firebase
+    //     .auth()
+    //     .signInWithEmailAndPassword(values.email, values.password);
+    //   // 로그인 된 사용자의 정보를 가지고 옴
+    //   const user = firebase.auth().currentUser;
+    //   setFBName(user.displayName);
+    //   setFBEmail(user.email);
+    //   setFBUid(user.uid);
+    //   navigate("/");
+    // } catch (error) {
+    //   console.log(error.code);
+    //   if (error.code === "auth/invalid-email") {
+    //     setModalMassage("올바른 이메일 형식이 아닙니다.");
+    //   } else if (error.code === "auth/wrong-password") {
+    //     setModalMassage("올바르지 않은 비밀번호입니다.");
+    //   } else if (error.code === "auth/user-not-found") {
+    //     setModalMassage("가입되지 않은 사용자 입니다.");
+    //   } else {
+    //     setModalMassage("로그인이 실패하였습니다.");
+    //   }
+    //   showModal();
+    // }
   };
   const onFinishFailed = errorInfo => {
     console.log("Failed:", errorInfo);
@@ -137,7 +146,7 @@ const Login = ({ setFBEmail, setFBName, setFBUid }) => {
           <Button
             type="primary"
             htmlType="submit"
-            style={{ backgroundColor: "#1677ff", margin: "0 50px"}}
+            style={{ backgroundColor: "#1677ff", margin: "0 50px" }}
           >
             로그인
           </Button>

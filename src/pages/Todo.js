@@ -27,9 +27,9 @@ const Todo = ({ fbName, fbEmail, fbUid }) => {
   // uid 없는 경우 로그인으로 바로 보내기
   useEffect(() => {
     // if (fbUid === "") {
-    if (!fbUid) {
-      navigator("/login");
-    }
+    // if (!fbUid) {
+    //   navigator("/login");
+    // }
   }, []);
 
   // axios get 호출 자료받기
@@ -39,7 +39,7 @@ const Todo = ({ fbName, fbEmail, fbUid }) => {
 
   return (
     <div className="flex justify-center items-start mt-5 w-full">
-      { isLoading && <Loading />}
+      {/* { isLoading && <Loading />} */}
       <div className="w-4/5 p-6 bg-white rounded-[6px] shadow">
         <div className="flex justify-between mb-3">
           <h1 className="text-center w-3/4 text-2xl text-red-600 font-semibold">
